@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const utils = require('../utils/utils.js')
+const nodemailer = require('nodemailer');
 
 passport.use(new LocalStrategy(async (username, password, done) => {
     
@@ -54,7 +55,7 @@ function authenticatedUser(req, res, next) {
             return next(err); 
         }
         if (!user) {
-            return res.redirect('/login'); 
+            return res.redirect('/auth/login'); 
         }
         req.logIn(user, function(err) {
             if (err) {
@@ -73,8 +74,8 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
-async function register (username, password) {
-    const checker = await utils.getUserdata(username)
+async function register (email, password) {
+    const checker = await utils.getUserdataByEmail(email)
 
 
     if (checker) {
@@ -85,10 +86,10 @@ async function register (username, password) {
 
     const salt = await bcrypt.genSalt(10);
     const hash_pass = await bcrypt.hash(password, salt);
-    await utils.insertUser(username, hash_pass, username)
+    await utils.insertUser(email, hash_pass, email)
 
 
-    const user = await utils.getUserdata(username)
+    const user = await utils.getUserdata(email)
     await utils.createProfile(null, null, user.id)
 
     console.log('Successful register.')

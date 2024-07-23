@@ -22,9 +22,9 @@ async function otpVerify (req, res) {
     if (req.session.otp == otp) {
       const response = await register(req.session.email, req.session.password)
       if (response) {
-        res.redirect('/login');
+        res.redirect('/auth/login');
       } else {
-        res.redirect('/fail')
+        res.redirect('/')
       }
 
     } else {
