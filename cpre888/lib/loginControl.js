@@ -12,7 +12,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
         user = await utils.getUserdata(username)
     }
 
-    console.log(user)
+    // console.log(user)
 
     if (!user) {
         return done(null, false)
@@ -70,7 +70,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
     } else {
-        res.redirect('/login');
+        res.redirect('/auth/login');
     }
 }
 

@@ -48,6 +48,8 @@ async function test() {
 
 // const haha = test()
 
+console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+
 module.exports = {
     db,
     closedb,

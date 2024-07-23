@@ -32,23 +32,25 @@ async function otpVerify (req, res) {
     }
 }
 
+async function profileUpdate (req, res) {
+  const formdata = req.body;
+  try {
+      await utils.updateUsername(formdata, req.user.id);
 
+      req.user.username = formdata.username;
 
-
-
-
-
-
-
-
-
-
-
-
+      await utils.updateData(formdata, req.user.id);
+      res.status(200).json({ redirect: `/profile/${req.user.username}` });
+  } catch (error) {
+      console.error('Error updating data:', error);
+      res.status(500).send('Internal Server Error');
+  }
+}
 
 
 
 module.exports = {
     loginSubmit,
-    otpVerify
+    otpVerify,
+    profileUpdate
 }
