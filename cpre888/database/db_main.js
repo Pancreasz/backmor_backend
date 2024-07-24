@@ -13,6 +13,8 @@ const config = {
     },
 };
 
+let db;
+
 (async function initializeDatabase() {
     db = new Client(config);
     try {
@@ -48,7 +50,6 @@ async function test() {
 
 // const haha = test()
 
-console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 
 module.exports = {
     db,

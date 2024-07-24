@@ -61,6 +61,7 @@ function authenticatedUser(req, res, next) {
             if (err) {
                 return next(err);  
             }
+            // console.log(req.body.username)
             return res.redirect(`/profile/${req.body.username}`); 
         });
     })(req, res, next);
