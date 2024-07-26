@@ -5,14 +5,11 @@ const utils = require('../utils/utils.js')
 const nodemailer = require('nodemailer');
 
 passport.use(new LocalStrategy(async (username, password, done) => {
-    
     if (username.includes("@")) {
         user = await utils.getUserdataByEmail(username)
     } else {
         user = await utils.getUserdata(username)
     }
-
-    // console.log(user)
 
     if (!user) {
         return done(null, false)
@@ -55,6 +52,7 @@ function authenticatedUser(req, res, next) {
             return next(err); 
         }
         if (!user) {
+            console.log('redirecting to auth/login')
             return res.redirect('/auth/login'); 
         }
         req.logIn(user, function(err) {

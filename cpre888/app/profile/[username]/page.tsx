@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ProfilePage from '@/components/profile/profile_page';
+import ProfilePicture from '@/components/profile/profile_picture';
 
 interface Username {
     params: {
@@ -39,6 +40,7 @@ const ProfilePageContainer: React.FC<Username> = ({ params }) => {
 
     return (
         <div>
+            <ProfilePicture username={userData.username} />
             <ProfilePage username={userData.username} firstname={userData.firstname} lastname={userData.lastname} />
         </div>
     );
