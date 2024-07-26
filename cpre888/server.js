@@ -1,3 +1,5 @@
+//\server.js
+
 const express = require('express')
 const next = require('next')
 const session = require('express-session');

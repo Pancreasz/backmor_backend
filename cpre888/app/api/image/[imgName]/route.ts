@@ -5,17 +5,14 @@ import utils from '@/utils/utils';
 
 export async function GET(req: NextRequest, { params }: { params: { imgName: string } }) {
   const { imgName } = params;
-
-  console.log(imgName, 'Profile picture')
-
   try {
     let userImg = await utils.getProfileImageByName(imgName);
     let img: string;
 
     if (!userImg) {
-      img = '/default.jpg';
+      img = '/profile_pic/default.jpg';
     } else {
-      img = `/${userImg.images_name}`;
+      img = `/profile_pic/${userImg.images_name}`;
     }
 
     return NextResponse.json({ imagePath: img });

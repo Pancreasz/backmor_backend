@@ -11,7 +11,6 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ username }) => {
   useEffect(() => {
     const fetchProfileImage = async () => {
       try {
-        console.log(username, 5555555555555)
         const response = await fetch(`/api/image/${username}`);
         const data = await response.json();
 

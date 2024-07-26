@@ -1,3 +1,5 @@
+//\lib\main_control.js
+
 const utils = require('../utils/utils.js');
 const otpGenerator = require('otp-generator');
 const path = require('path')
@@ -47,10 +49,21 @@ async function profileUpdate (req, res) {
   }
 }
 
+async function change_profile (req, res) {
+  console.log('changing profile')
+  try {
+    utils.uploadProfileImage(req.file.filename, req.user.id)
 
+    console.log('File uploaded successfully')
+    res.redirect(`/profile/${req.user.username}`)
+  } catch (error) {
+      res.status(500).send('Error uploading file');
+  }
+}
 
 module.exports = {
     loginSubmit,
     otpVerify,
-    profileUpdate
+    profileUpdate,
+    change_profile
 }

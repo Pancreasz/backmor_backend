@@ -1,3 +1,5 @@
+//\routes\routes.js
+
 const express = require('express')
 const {
     authenticatedUser,
@@ -6,10 +8,13 @@ const {
 const {
     loginSubmit,
     otpVerify,
-    profileUpdate
+    profileUpdate,
+    change_profile
 } = require('../lib/main_control.js')
 
 const router = express.Router();
+
+router.post('/change_profile', change_profile )
 
 router.post('/register', loginSubmit )
 
