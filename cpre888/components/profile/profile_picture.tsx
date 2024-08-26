@@ -14,6 +14,8 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ username }) => {
         const response = await fetch(`/api/image/${username}`);
         const data = await response.json();
 
+        console.log(data, 'image data')
+
         if (response.ok) {
           setImgSrc(data.imagePath);
         } else {

@@ -50,9 +50,9 @@ async function profileUpdate (req, res) {
 }
 
 async function change_profile (req, res) {
-  console.log('changing profile')
+  console.log(req.body, req.user.id)
   try {
-    utils.uploadProfileImage(req.file.filename, req.user.id)
+    utils.uploadProfileImage(req.body.fileName, req.user.id)
 
     console.log('File uploaded successfully')
     res.redirect(`/profile/${req.user.username}`)

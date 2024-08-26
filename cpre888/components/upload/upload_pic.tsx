@@ -33,7 +33,7 @@ const UploadComponent: React.FC<UploadComponentProps> = ({ route, onUploadSucces
       const data = await response.json();
       if (response.ok) {
         setMessage('File uploaded successfully');
-        onUploadSuccess(`${file.name}_${Date.now()}`); // Call the callback here with the file name
+        onUploadSuccess(`${Date.now()}_${file.name}`); // Call the callback here with the file name
       } else {
         setMessage(data.error || 'Upload failed');
       }

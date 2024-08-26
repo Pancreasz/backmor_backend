@@ -10,10 +10,12 @@ export async function GET(req: NextRequest, { params }: { params: { imgName: str
     let img: string;
 
     if (!userImg) {
-      img = '/profile_pic/default.jpg';
+      img = '/public/profile_pic/default.jpg';
     } else {
-      img = `/profile_pic/${userImg.images_name}`;
+      img = `/public/profile_pic/${userImg.images_name}`;
     }
+
+    console.log(img, 'image path')
 
     return NextResponse.json({ imagePath: img });
   } catch (error) {
